@@ -25,7 +25,7 @@ There are a number of things that this package should have:
 ## Developing the package
 Feel free to fork this repository to get a base for the package. Some needed folders are already generated as well as some empty test cases to be filled in.
 
-When you have completed it the test suite should be passing, and it should be usable in a new Laravel project.
+When you have completed it, the test suite should be passing, and it should be usable in a new Laravel project.
 
 ### Requirements
 This is a very basic project which doesn't require anything more than the minimum for a Laravel project.  
