@@ -51,7 +51,7 @@ To get started with this project:
 2. Clone the forked repository onto your PC
 3. `cd` into the cloned repository
 4. Run `composer install`
-5. Run `composer test` -> You should see all tests finish with "Risky" indicating they don't do anything yet
+5. Run `composer test` -> You should see all tests failing
 
 ## Considerations
 There are a few things we are looking out for in the code:
@@ -78,3 +78,8 @@ with some comments referencing the question and giving some context).
 5. Suppose the developer wants to record other types of actions that are more specific, i.e. "Task was completed by ____" how could that be implemented?
 6. What should be considered when developing the package to scale?
 7. What should happen when an event is triggered but there is no authenticated user, e.g. in a queued job?
+
+## Links that may be useful
+https://laravel.com/docs/9.x/eloquent#events-using-closures
+https://www.archybold.com/blog/post/booting-eloquent-model-traits
+https://laravel.com/docs/9.x/eloquent-relationships
