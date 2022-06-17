@@ -6,10 +6,13 @@ namespace Activity\Tests;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
 
 class ActivityTest extends TestCase
 {
+    use RefreshDatabase;
+
     protected function createUser(): User
     {
         return User::create([
@@ -58,6 +61,7 @@ class ActivityTest extends TestCase
         ]);
 
         $post->title = 'Test title';
+        $post->save();
 
         static::assertCount(2, $post->actions);
         static::assertCount(2, $user->performedActions);

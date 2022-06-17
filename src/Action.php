@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Action extends Model
 {
-    // TODO: Write relationships and logic for actions model
+    // TODO: Write logic for actions model
 }
