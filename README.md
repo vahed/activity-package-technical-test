@@ -1,11 +1,16 @@
 # Activity package technical test
 
-For this test you will be asked to build a simple Laravel package for logging user activity on models, so they can see a history of their data.
+For this test you will be asked to build a simple Laravel package for logging
+user activity on models, so they can see a history of their data.
 
 ## Introduction
-It is a very useful feature of web applications to be able to show users how and when their data was changed throughout the lifetime of their account. Laravel has many features that make keeping track of activity easier through events.  
-The package should be easy to use out of the box but contain some customisation options to tailor it to specific applications.  
-There will also be some follow-up questions asking how the package might be improved with more development.
+It is a very useful feature of web applications to be able to show users how and
+when their data was changed throughout the lifetime of their account. Laravel
+has many features that make keeping track of activity easier through events.  
+The package should be easy to use out of the box but contain some customisation
+options to tailor it to specific applications.  
+There will also be some follow-up questions asking how the package might be
+improved with more development.
 
 ## Test specifications
 There are a number of things that this package should have:
@@ -14,6 +19,7 @@ There are a number of things that this package should have:
     - An action should know the type of action (create, update, delete)
     - Each action should be related to a "performer" model and a "subject" model
         - For simplicity, you can assume that any application using this package would have a `users` table and that the `User` model is the "performer"
+        - You can assume that the performer is the currently authenticated user
         - The "subject" model could be any/all models defined in the application (including the `User`)
     - An action should be able to output a translated string summarising the action, including whoever performed the action and the item that it was performed on
 - A trait called `HasActions` to be added to the models that should have their events recorded into actions
@@ -23,13 +29,18 @@ There are a number of things that this package should have:
 - Tests verifying the behaviour, the Laravel Package test framework [orchestra](https://packages.tools/testbench) is already installed an set up.
 
 ## Developing the package
-Feel free to fork this repository to get a base for the package. Some needed folders are already generated as well as some empty test cases to be filled in.
+Feel free to fork this repository to get a base for the package. Some needed
+folders are already generated as well as some empty test cases to be filled in.
 
-When you have completed it, the test suite should be passing, and it should be usable in a new Laravel project.
+When you have completed it, the test suite should be passing, and it should be
+usable in a new Laravel project.
 
 ### Requirements
-This is a very basic project which doesn't require anything more than the minimum for a Laravel project.  
-You can get it running inside a [Homestead](https://laravel.com/docs/9.x/homestead#main-content) virtual machine or on any machine with the following software:
+This is a very basic project which doesn't require anything more than the
+minimum for a Laravel project.  
+You can get it running inside a
+[Homestead](https://laravel.com/docs/9.x/homestead#main-content) virtual machine
+or on any machine with the following software:
 - PHP >= 8.0
 - Composer >= 2.0
 - SQlite with the PHP extension
@@ -51,10 +62,14 @@ There are a few things we are looking out for in the code:
 - Efficiency when it makes sense (i.e. no need to save a few milliseconds at the expense of readability)
 
 ## Questions for further development
-This test should only be a very basic implementation of the package, not production ready.  
-Following are some questions about making it a more complete package and some other considerations that could be included.
+This test should only be a very basic implementation of the package, not
+production ready.  
+Following are some questions about making it a more complete package and some
+other considerations that could be included.
 
-You may write the answers in this README as part of the submission. (If you want to implement the answer to some of these questions in the code then feel free, with some comments referencing the question and giving some context).
+You may write the answers in this README as part of the submission. (If you want
+to implement the answer to some of these questions in the code then feel free,
+with some comments referencing the question and giving some context).
 
 1. What aspects of this package could be customised with a config file
 2. How would you go about storing more information about the event (i.e. what fields were updated, from what to what)?

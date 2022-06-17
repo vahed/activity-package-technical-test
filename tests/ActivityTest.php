@@ -4,15 +4,42 @@ declare(strict_types=1);
 
 namespace Activity\Tests;
 
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Str;
+
 class ActivityTest extends TestCase
 {
+    protected function createUser(): User
+    {
+        return User::create([
+            'name' => 'Test user',
+            'email' => 'test@example.com',
+            'email_verified_at' => now(),
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'remember_token' => Str::random(10),
+        ]);
+    }
+
     /**
      * When a tracked model is created an action is saved
      * @test
      */
     public function when_a_tracked_model_is_created_an_action_is_saved(): void
     {
-        // TODO: Implement test case
+        $user = $this->createUser();
+
+        $this->be($user);
+
+        $post = $user->posts()->create([
+            'title' => 'Test post',
+            'body' => 'Test body',
+        ]);
+
+        static::assertCount(1, $post->actions);
+        static::assertCount(1, $user->performedActions);
+        static::assertSame('The model was created', $post->actions->first());
+        static::assertSame($post->actions->first(), $user->performedActions->first());
     }
 
     /**
@@ -21,7 +48,21 @@ class ActivityTest extends TestCase
      */
     public function when_a_tracked_model_is_updated_an_action_is_saved(): void
     {
-        // TODO: Implement test case
+        $user = $this->createUser();
+
+        $this->be($user);
+
+        $post = $user->posts()->create([
+            'title' => 'Test post',
+            'body' => 'Test body',
+        ]);
+
+        $post->title = 'Test title';
+
+        static::assertCount(2, $post->actions);
+        static::assertCount(2, $user->performedActions);
+        static::assertSame('The model was updated', $post->actions->last());
+        static::assertSame($post->actions->first(), $user->performedActions->last());
     }
 
     /**
@@ -30,24 +71,35 @@ class ActivityTest extends TestCase
      */
     public function when_a_tracked_model_is_deleted_an_action_is_saved(): void
     {
-        // TODO: Implement test case
-    }
+        $user = $this->createUser();
 
-    /**
-     * All activity can be fetched on a tracked model
-     * @test
-     */
-    public function all_activity_can_be_fetched_on_a_tracked_model(): void
-    {
-        // TODO: Implement test case
-    }
+        $this->be($user);
 
-    /**
-     * All activity can be fetched on a performer
-     * @test
-     */
-    public function all_activity_can_be_fetched_on_a_performer(): void
-    {
-        // TODO: Implement test case
+        $post = $user->posts()->create([
+            'title' => 'Test post',
+            'body' => 'Test body',
+        ]);
+
+        $post->delete();
+
+        static::assertCount(2, $user->performedActions);
+        static::assertSame('The model was deleted', $user->performedActions->last());
     }
+}
+
+class User extends \Illuminate\Foundation\Auth\User
+{
+    use \Activity\PerformsActions;
+    protected $guarded = [];
+
+    public function posts(): HasMany
+    {
+        return $this->hasMany(Post::class);
+    }
+}
+
+class Post extends Model
+{
+    protected $guarded = [];
+    use \Activity\HasActions;
 }
