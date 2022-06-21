@@ -80,6 +80,6 @@ with some comments referencing the question and giving some context).
 7. What should happen when an event is triggered but there is no authenticated user, e.g. in a queued job?
 
 ## Links that may be useful
-https://laravel.com/docs/9.x/eloquent#events-using-closures
-https://www.archybold.com/blog/post/booting-eloquent-model-traits
-https://laravel.com/docs/9.x/eloquent-relationships
+- https://laravel.com/docs/9.x/eloquent#events-using-closures
+- https://www.archybold.com/blog/post/booting-eloquent-model-traits
+- https://laravel.com/docs/9.x/eloquent-relationships
