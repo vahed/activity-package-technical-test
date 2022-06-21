@@ -26,7 +26,7 @@ There are a number of things that this package should have:
     - The trait should allow the developer to access all actions performed on an item
     - The logic for generating actions based on Laravel events should be in the trait
 - A trait called `PerformsActions` which can be added to the `User` to allow the developer to easily fetch the users activity
-- Tests verifying the behaviour, the Laravel Package test framework [orchestra](https://packages.tools/testbench) is already installed an set up.
+- Tests verifying the behaviour, the Laravel Package test framework [orchestra](https://packages.tools/testbench) is already installed and set up.
 
 ## Developing the package
 Feel free to fork this repository to get a base for the package. Some needed
