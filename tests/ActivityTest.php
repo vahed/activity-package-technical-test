@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Activity\Tests;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
 
@@ -89,21 +87,4 @@ class ActivityTest extends TestCase
         static::assertCount(2, $user->performedActions);
         static::assertSame('The model was deleted', $user->performedActions->last()->getDescription());
     }
-}
-
-class User extends \Illuminate\Foundation\Auth\User
-{
-    use \Activity\PerformsActions;
-    protected $guarded = [];
-
-    public function posts(): HasMany
-    {
-        return $this->hasMany(Post::class);
-    }
-}
-
-class Post extends Model
-{
-    protected $guarded = [];
-    use \Activity\HasActions;
 }
