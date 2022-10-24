@@ -14,9 +14,11 @@ return new class extends Migration {
     {
         Schema::create('actions', function(Blueprint $table) {
             $table->id();
-
-            // TODO: Create actions table
-
+            $table->string('type');
+            $table->string('performer');
+            $table->string('subject');
+            $table->unsignedBigInteger('performer_id')->index();
+            $table->unsignedBigInteger('subject_id')->index();
             $table->timestamps();
         });
     }

@@ -2,17 +2,24 @@
 
 declare(strict_types=1);
 
-namespace Activity\Tests;
+namespace Activity\models;
 
-use Activity\PerformsActions;
+use Activity\traits\PerformsActions;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use \Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
     use PerformsActions;
+
+    /**
+     * @var array
+     */
     protected $guarded = [];
 
+    /**
+     * @return HasMany
+     */
     public function posts(): HasMany
     {
         return $this->hasMany(Post::class);

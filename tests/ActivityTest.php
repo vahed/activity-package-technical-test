@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Activity\Tests;
 
+use Activity\models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
 
