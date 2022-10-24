@@ -1,5 +1,5 @@
 # activity-package-technical-test
-1. All the database credentials could be added to the .env file
+1. All the database credentials, third party services could be added to the .env file
 2. Events should be stored in a directory for instance Events and created Event classes in this directory and try to categorise the Events for example all Order, Post, etc Events.
 3. Auth->user() instance could check if the user is authenticated then the action would be performed or a constructor could perform as a middleware to return true if the user is authenticated before the action is called by boot function.
 4. The action for delete items is called "deleted" which could be soft deleted means we could have the record of the deleted items in the database.
